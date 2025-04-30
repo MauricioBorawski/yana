@@ -32,6 +32,8 @@ export const Note = ({ title, content }: NoteProps) => {
     setNote((prev) => {
       const blockToEdit = prev.blocks.find((block) => block.id === id);
 
+      if (blockToEdit?.content === value) return prev;
+
       if (blockToEdit) {
         blockToEdit.content = value;
 
@@ -69,9 +71,11 @@ export const Note = ({ title, content }: NoteProps) => {
     if (blocks.length > 1) {
       const lastElement = blocks[blocks.length - 1];
 
-      lastElement.focus();
+      if (lastElement.textContent === "") {
+        lastElement.focus();
+      }
     }
-  }, [note.blocks]);
+  }, [note]);
 
   return (
     <main

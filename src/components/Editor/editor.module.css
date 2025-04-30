@@ -1,4 +1,4 @@
-.editor {
+ .editor {
   width: 100%;
   min-width: 100%;
   padding: 8px;
@@ -10,13 +10,13 @@
 
 .editor-title:empty:after {
   content: "New note...";
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--editor-outline);
 }
 
 .editor-body {
   font-size: 20px;
 }
-.editor-body:empty:nth-child(2):after {
+.editor-body:empty:after {
   content: "Start typing here...";
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--editor-outline);
 }

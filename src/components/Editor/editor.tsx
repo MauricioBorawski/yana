@@ -50,6 +50,7 @@ export const Editor = ({
       onBlur={() => {
         if (editorRef.current) {
           const text = editorRef.current.textContent;
+
           updateValue(text || "");
         }
       }}
@@ -58,6 +59,12 @@ export const Editor = ({
           e.preventDefault();
           if (createBlock) {
             createBlock();
+          }
+        }
+
+        if (e.key === "Escape") {
+          if (editorRef.current) {
+            editorRef.current.blur();
           }
         }
       }}

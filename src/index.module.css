@@ -13,38 +13,38 @@
   color-scheme: light dark; /* Avisamos que soportamos ambos */
 
   /* Colores base */
-  --yana-black: #000000;
+  --yana-black: #222831;
   --yana-blue: #14213d;
   --yana-yellow: #fca311;
   --yana-gray: #e5e5e5;
   --yana-white: #ffffff;
 
   /* Variables principales */
-  --background: var(--yana-white);
+  --background: beige;
   --color: var(--yana-black);
+
+  /* Editor Text Color */
+  --editor-outline: rgba(255, 255, 255, 0.4);
 }
 
 /* Detectar si el sistema está en modo dark */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: var(--yana-blue);
+    --background: var(--yana-black);
     --color: var(--yana-gray);
   }
 }
 
 /* Cuando el usuario elige manualmente el tema */
 :root:has(option[id="theme-light"]:checked) {
-  --background: var(--yana-white);
+  --background: beige;
   --color: var(--yana-black);
+  --editor-outline: rgba(0, 0, 0, .4);
 }
 
 :root:has(option[id="theme-dark"]:checked) {
-  --background: var(--yana-blue);
+  --background: var(--yana-black);
   --color: var(--yana-gray);
-}
-
-:root:has(option[id="theme-system"]:checked) {
-  /* Volvemos a respetar el sistema → no hace falta redefinir nada */
 }
 
 /* Estilos globales */
