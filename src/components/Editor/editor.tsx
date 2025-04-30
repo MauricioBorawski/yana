@@ -1,44 +1,66 @@
-import { useState } from "react";
-import { Note } from "../Notes/notes";
+import { useEffect, useRef } from "react";
+import { clsx } from "clsx";
 import s from "./editor.module.css";
 
-import type { TNote } from "../../types";
+type EditorType = "title" | "body";
 
-const emptyNote: TNote = {
-  title: "",
-  blocks: [
-    {
-      id: crypto.randomUUID(),
-      content: "",
-    },
-  ],
-};
+type Tag = keyof Pick<React.JSX.IntrinsicElements, "div" | "h1">;
 
-export const Editor = () => {
-  const [note, setNote] = useState<TNote>(emptyNote);
+interface EditorProps {
+  editorType?: EditorType;
+  children?: React.ReactNode;
+  updateValue: (value: string) => void;
+  createBlock?: () => void;
+}
 
-  const handleChangeTitle = (value: string) => {
-    setNote((prevNote) => ({
-      ...prevNote,
-      title: value,
-    }));
+export const Editor = ({
+  editorType = "body",
+  children,
+  updateValue,
+  createBlock,
+}: EditorProps) => {
+  const editorRef = useRef<HTMLDivElement | null>(null);
+
+  const TagOption: Record<EditorType, Tag> = {
+    body: "div",
+    title: "h1",
   };
+  const Tag = TagOption[editorType];
 
-  const handleChangeContent = (value: string) => {
-    console.log(value);
-  };
+  const css = clsx([
+    s.editor,
+    editorType === "title" && s["editor-title"],
+    editorType === "body" && s["editor-body"],
+  ]);
+
+  useEffect(() => {
+    if (editorRef.current) {
+      editorRef.current.textContent = children?.toString() || "";
+    }
+  }, [children]);
 
   return (
-    <main className={s.container}>
-      <Note noteType="title" handleChangeValue={handleChangeTitle}>
-        {note.title}
-      </Note>
-
-      {note.blocks.map((block) => (
-        <Note key={block.id} handleChangeValue={handleChangeContent}>
-          {block.content}
-        </Note>
-      ))}
-    </main>
+    <Tag
+      id={editorType === "title" ? "editor-title" : "editor-body"}
+      ref={editorRef}
+      contentEditable
+      suppressContentEditableWarning
+      spellCheck
+      className={css}
+      onBlur={() => {
+        if (editorRef.current) {
+          const text = editorRef.current.textContent;
+          updateValue(text || "");
+        }
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          if (createBlock) {
+            createBlock();
+          }
+        }
+      }}
+    />
   );
 };

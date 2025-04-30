@@ -11,7 +11,7 @@
 :root {
   font-family: "Source Code Pro";
   color-scheme: light dark; /* Avisamos que soportamos ambos */
-  
+
   /* Colores base */
   --yana-black: #000000;
   --yana-blue: #14213d;
@@ -54,4 +54,8 @@ body {
   transition: background 0.3s, color 0.3s;
   margin: 0;
   padding: 0;
+}
+
+:focus {
+  outline: 0;
 }
