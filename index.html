@@ -1,13 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./tailwind.css" />
     <title>YANA</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      const darkTheme = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      const body = document.querySelector("body");
+
+      if (darkTheme) {
+        body.classList.add("dark");
+      } else {
+        body.classList.add("light");
+      }
+    </script>
   </body>
 </html>

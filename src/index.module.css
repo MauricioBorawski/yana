@@ -10,44 +10,31 @@
 
 :root {
   font-family: "Source Code Pro";
-  color-scheme: light dark; /* Avisamos que soportamos ambos */
+  color-scheme: light dark;
 
   /* Colores base */
-  --yana-black: #222831;
+  --yana-black: #0a0a0a;
   --yana-blue: #14213d;
   --yana-yellow: #fca311;
   --yana-gray: #e5e5e5;
   --yana-white: #ffffff;
 
   /* Variables principales */
-  --background: beige;
+  --background: var(--yana-white);
   --color: var(--yana-black);
 
   /* Editor Text Color */
-  --editor-outline: rgba(255, 255, 255, 0.4);
+  --editor-outline: rgba(38, 38, 38, 0.4);
 }
 
-/* Detectar si el sistema está en modo dark */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--yana-black);
     --color: var(--yana-gray);
+    --editor-outline: rgba(255, 255, 255, 0.4);
   }
 }
 
-/* Cuando el usuario elige manualmente el tema */
-:root:has(option[id="theme-light"]:checked) {
-  --background: beige;
-  --color: var(--yana-black);
-  --editor-outline: rgba(0, 0, 0, .4);
-}
-
-:root:has(option[id="theme-dark"]:checked) {
-  --background: var(--yana-black);
-  --color: var(--yana-gray);
-}
-
-/* Estilos globales */
 body {
   background: var(--background);
   color: var(--color);

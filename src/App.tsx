@@ -1,15 +1,22 @@
-// import { Editor } from "./components/Editor/editor";
 import { Note } from "./components/Notes/note";
-import { ThemeSelector } from "./components/theme-selector/theme-selector";
+import {
+  SidebarProvider,
+  SidebarInset,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { Menu } from "./components/Menu/menu";
 
 import "./App.css";
 
 function App() {
   return (
-    <>
-      <Note />
-      <ThemeSelector />
-    </>
+    <SidebarProvider>
+      <Menu />
+      <SidebarInset>
+        <SidebarTrigger />
+        <Note />
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
 
