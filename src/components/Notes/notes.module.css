@@ -1,0 +1,19 @@
+.yana-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    width: 100%;
+    max-width: 1024;
+    height: calc(100dvh - 96px);
+}
+
+.yana-editor-title {
+    font-size: 4rem;
+    cursor: text;
+}
+
+.yana-editor-title:empty:after {
+  content: "New note...";
+  color: var(--editor-outline);
+}

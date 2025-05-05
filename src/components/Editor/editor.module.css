@@ -1,22 +1,15 @@
- .editor {
+.editor {
   width: 100%;
   min-width: 100%;
   padding: 8px;
   cursor: text;
 }
-.editor-title {
-  font-size: 64px;
-}
-
-.editor-title:empty:after {
-  content: "New note...";
-  color: var(--editor-outline);
-}
 
 .editor-body {
   font-size: 20px;
 }
-.editor-body:empty:after {
-  content: "Start typing here...";
+
+.editor-body:has(> br):before {
+  content: "New note...";
   color: var(--editor-outline);
 }
