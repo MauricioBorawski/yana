@@ -8,11 +8,6 @@
     height: calc(100dvh - 96px);
 }
 
-.yana-editor-title {
-    font-size: 4rem;
-    cursor: text;
-}
-
 .yana-editor-title:empty:after {
   content: "New note...";
   color: var(--editor-outline);

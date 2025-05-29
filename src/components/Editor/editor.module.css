@@ -9,7 +9,17 @@
   font-size: 20px;
 }
 
-.editor-body:has(> br):before {
+.editor-body:has(> br)::before {
   content: "New note...";
+  color: var(--editor-outline);
+}
+
+.yana-editor-title {
+  font-size: 4rem;
+  cursor: text;
+}
+
+.yana-editor-title:empty::after {
+  content: "New Note...";
   color: var(--editor-outline);
 }
