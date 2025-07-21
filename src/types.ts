@@ -12,3 +12,9 @@ const noteSchema = z.object({
 });
 
 export type TNote = z.infer<typeof noteSchema>;
+
+export interface Note {
+  id?: string;
+  title?: string | null;
+  content?: Array<string>;
+}

@@ -1,6 +1,6 @@
 import s from "./editor.module.css";
 
-export const Header = () => (
+export const Header = ({title}: {title?: string | null}) => (
   <h1
     contentEditable
     suppressContentEditableWarning
@@ -8,6 +8,7 @@ export const Header = () => (
     spellCheck={false}
     role="input"
     tabIndex={0}
+    children={title}
     className={s["yana-editor-title"]}
   />
 );
