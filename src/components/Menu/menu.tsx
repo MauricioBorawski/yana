@@ -37,7 +37,7 @@ export const Menu = () => {
                       createNote({
                         id: id,
                         title: "",
-                        content: [],
+                        content: null,
                       });
 
                       navigate(`/${id}`);

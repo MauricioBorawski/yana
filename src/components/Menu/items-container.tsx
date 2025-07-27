@@ -3,6 +3,7 @@ import { useNotesStore } from "@/store/notes";
 
 export const ItemsContainer = () => {
   const notes = useNotesStore((state) => state.notes);
+  console.log(notes);
 
   return (
     <div>
