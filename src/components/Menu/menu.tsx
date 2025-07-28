@@ -16,7 +16,7 @@ import { ItemsContainer } from "./items-container";
 
 export const Menu = () => {
   const navigate = useNavigate();
-  const createNote = useNotesStore(s => s.createNote);
+  const createNote = useNotesStore().createNote;
 
   return (
     <aside>

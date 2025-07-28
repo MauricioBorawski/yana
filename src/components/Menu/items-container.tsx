@@ -1,9 +1,8 @@
-import { NoteItem } from "../NoteItem/note-item";
 import { useNotesStore } from "@/store/notes";
+import { NoteItem } from "../NoteItem/note-item";
 
 export const ItemsContainer = () => {
   const notes = useNotesStore((state) => state.notes);
-  console.log(notes);
 
   return (
     <div>
