@@ -7,6 +7,12 @@
 
 .editor-body {
   font-size: 20px;
+  padding: 8px;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(6px);
+    border-radius: 4px;
+  }
 }
 
 .editor-body:has(> br)::before {

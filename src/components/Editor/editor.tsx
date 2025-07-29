@@ -1,16 +1,17 @@
+import { useEffect } from "react";
+import { useParams } from "react-router";
 import { useEditor, EditorContent } from "@tiptap/react";
 import { useNotesStore } from "@/store/notes";
-import { useParams } from "react-router";
-import Paragraph from "@tiptap/extension-paragraph";
-import BulletList from "@tiptap/extension-bullet-list";
-import StarterKit from "@tiptap/starter-kit";
-import TaskItem from "@tiptap/extension-task-item";
-import TaskList from "@tiptap/extension-task-list";
 import { clsx } from "clsx";
+import { ListKeymap, ListItem, BulletList } from "@tiptap/extension-list";
+import Document from "@tiptap/extension-document";
+import Text from "@tiptap/extension-text";
+import DragHandle from "@tiptap/extension-drag-handle-react";
+import Paragraph from "@tiptap/extension-paragraph";
+import { GripVertical } from "lucide-react";
 import s from "./editor.module.css";
-import { useEffect } from "react";
 
-const extensions = [StarterKit];
+const CustomListItem = ListItem.extend({});
 
 export const Editor = () => {
   const { id } = useParams();
@@ -22,21 +23,20 @@ export const Editor = () => {
   const editor = useEditor({
     content: note?.content,
     extensions: [
-      ...extensions,
+      Document,
+      Text,
       Paragraph.configure({
         HTMLAttributes: {
           class: clsx(s["editor-body"]),
         },
       }),
-      BulletList.configure({
+      BulletList,
+      CustomListItem.configure({
         HTMLAttributes: {
           class: "list-disc",
         },
       }),
-      TaskItem.configure({
-        nested: true,
-      }),
-      TaskList,
+      ListKeymap,
     ],
     editorProps: {
       attributes: {
@@ -55,5 +55,17 @@ export const Editor = () => {
     }
   }, [editor, note]);
 
-  return <EditorContent editor={editor} />;
+  return (
+    <>
+      <DragHandle
+        editor={editor}
+        computePositionConfig={{
+          placement: "left",
+        }}
+      >
+        <GripVertical className="size-4" />
+      </DragHandle>
+      <EditorContent editor={editor} />
+    </>
+  );
 };

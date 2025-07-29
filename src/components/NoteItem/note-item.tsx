@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router";
 import { X } from "lucide-react";
 import clsx from "clsx";
-import { Button } from "../ui/button";
 import { SidebarMenuItem } from "../ui/sidebar";
 import { DeleteModal } from "../Modals/delete-modal";
 
@@ -15,7 +14,11 @@ export const NoteItem = ({
 }) => {
   const [showDeleteButton, setShowDeleteButton] = useState(false);
 
-  const buttonStyles = clsx(["size-5", !showDeleteButton && "hidden"]);
+  const buttonStyles = clsx([
+    "size-5",
+    "cursor-pointer",
+    !showDeleteButton && "hidden",
+  ]);
 
   return (
     <Link to={`/${id}`}>
@@ -33,9 +36,9 @@ export const NoteItem = ({
       >
         {children || "New Note..."}
         <DeleteModal id={id}>
-          <Button variant="secondary" size="icon" className={buttonStyles}>
+          <div className={buttonStyles}>
             <X />
-          </Button>
+          </div>
         </DeleteModal>
       </SidebarMenuItem>
     </Link>
