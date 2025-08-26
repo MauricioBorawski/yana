@@ -9,15 +9,10 @@
   font-size: 20px;
   padding: 8px;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: #2383e247;
     backdrop-filter: blur(6px);
     border-radius: 4px;
   }
-}
-
-.editor-body:has(> br)::before {
-  content: "New note...";
-  color: var(--editor-outline);
 }
 
 .yana-editor-title {
@@ -28,4 +23,10 @@
 .yana-editor-title:empty::after {
   content: "New Note...";
   color: var(--editor-outline);
+}
+
+.yana-editor-code-block {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+  padding: 8px;
 }

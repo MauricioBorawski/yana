@@ -1,0 +1,15 @@
+.tiptap {
+  p:has(> br:only-child)::before {
+    content: "New note...";
+    color: var(--editor-outline);
+    opacity: 0.6;
+    font-style: italic;
+    pointer-events: none;
+  }
+
+  pre {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    padding: 8px;
+  }
+}

@@ -46,6 +46,8 @@ const NoteLayout = () => {
 const NoteGuard = () => {
   const hasNotes = useNotesStore().hasNotes;
   const createNote = useNotesStore().createNote;
+  const notes = useNotesStore().notes;
+  const lastNote = notes[notes.length - 1];
 
   const navigate = useNavigate();
 
@@ -60,6 +62,8 @@ const NoteGuard = () => {
       });
 
       navigate(`/${id}`);
+    } else {
+      navigate(`/${lastNote.id}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

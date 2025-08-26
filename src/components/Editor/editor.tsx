@@ -8,6 +8,14 @@ import Document from "@tiptap/extension-document";
 import Text from "@tiptap/extension-text";
 import DragHandle from "@tiptap/extension-drag-handle-react";
 import Paragraph from "@tiptap/extension-paragraph";
+import CodeBlock from "@tiptap/extension-code-block";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { all, createLowlight } from "lowlight";
+import css from "highlight.js/lib/languages/css";
+import js from "highlight.js/lib/languages/javascript";
+import ts from "highlight.js/lib/languages/typescript";
+import html from "highlight.js/lib/languages/xml";
+import java from "highlight.js/lib/languages/java";
 import { GripVertical } from "lucide-react";
 import s from "./editor.module.css";
 
@@ -20,11 +28,23 @@ export const Editor = () => {
     state.notes.find((note) => note.id === id)
   );
 
+  const lowlight = createLowlight(all);
+
+  lowlight.register("html", html);
+  lowlight.register("css", css);
+  lowlight.register("js", js);
+  lowlight.register("ts", ts);
+  lowlight.register("java", java);
+
   const editor = useEditor({
     content: note?.content,
     extensions: [
       Document,
       Text,
+      CodeBlock.configure({}),
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
       Paragraph.configure({
         HTMLAttributes: {
           class: clsx(s["editor-body"]),

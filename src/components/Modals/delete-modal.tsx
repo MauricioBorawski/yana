@@ -26,16 +26,11 @@ export const DeleteModal = ({
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Delete Note</DialogTitle>
+          <DialogTitle>Delete Note? {note && note.title}</DialogTitle>
         </DialogHeader>
         <DialogDescription>
           Are you sure you want to delete this note?
         </DialogDescription>
-        {note && (
-          <p className="text-sm text-muted-foreground font-semibold">
-            {note.title || "Untitled Note"}
-          </p>
-        )}
         <DialogFooter>
           <Button
             variant="destructive"
